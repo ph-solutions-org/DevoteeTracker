@@ -8,9 +8,6 @@ from kivy.utils import platform
 from kivy.clock import Clock
 from kivy.resources import resource_add_path
 
-# Add the current directory to resource path
-resource_add_path(os.path.dirname(os.path.abspath(__file__)))
-
 # Import screens
 from screens.home_screen import HomeScreen
 from screens.devotee_screen import DevoteeScreen
@@ -25,27 +22,25 @@ from utils.bluetooth_manager import BluetoothManager
 from utils.authentication import Authentication
 from database.db_handler import DatabaseHandler
 
+# Add current directory to resource path
+resource_add_path(os.path.dirname(os.path.abspath(__file__)))
+
 # Set window size for desktop testing
 if platform not in ('android', 'ios'):
     Window.size = (400, 700)
     Window.clearcolor = (0.95, 0.95, 0.95, 1)  # Light gray background
-    
-# Load the KV file explicitly
+
+# Try to load the KV file
 try:
-    # First try absolute path
-    current_dir = os.path.dirname(os.path.abspath(__file__))
-    kv_path = os.path.join(current_dir, 'jainapp.kv')
-    Builder.load_file(kv_path)
-    print(f"KV file loaded successfully from: {kv_path}")
+    kv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'jainapp.kv')
+    if os.path.exists(kv_path):
+        Builder.load_file(kv_path)
+        print(f"KV file loaded from: {kv_path}")
+    else:
+        print(f"KV file not found at: {kv_path}")
+        print("Files in directory:", os.listdir(os.path.dirname(os.path.abspath(__file__))))
 except Exception as e:
-    try:
-        # Try direct file loading
-        Builder.load_file('jainapp.kv')
-        print("KV file loaded successfully from current directory")
-    except Exception as e2:
-        print(f"Failed to load KV file: {e2}")
-        print("Current directory:", os.getcwd())
-        print("Files in directory:", os.listdir())
+    print(f"Error loading KV file: {e}")
 
 class JainTempleApp(App):
     """

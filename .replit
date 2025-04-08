@@ -15,6 +15,26 @@ author = "agent"
 task = "workflow.run"
 args = "JainTempleApp"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "TestKivyApp"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "TestJainApp"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "FixedJainApp"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "EmbeddedApp"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "DesktopJainApp"
+
 [[workflows.workflow]]
 name = "JainTempleApp"
 author = "agent"
@@ -28,6 +48,76 @@ task = "packager.installForAll"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "pip install kivy && python main.py"
+
+[[workflows.workflow]]
+name = "TestKivyApp"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python test_kivy.py"
+
+[[workflows.workflow]]
+name = "TestJainApp"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python test_jain_app.py"
+
+[[workflows.workflow]]
+name = "FixedJainApp"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python fixed_main.py"
+
+[[workflows.workflow]]
+name = "EmbeddedApp"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python embedded_kv_app.py"
+
+[[workflows.workflow]]
+name = "DesktopJainApp"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python desktop_main.py"
 
 [deployment]
 run = ["sh", "-c", "pip install kivy && python main.py"]
