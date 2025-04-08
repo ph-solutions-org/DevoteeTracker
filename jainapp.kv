@@ -1,0 +1,582 @@
+#:kivy 2.0.0
+
+<HomeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        
+        Label:
+            text: 'Jain Temple\nDevotee Management System'
+            font_size: '24sp'
+            halign: 'center'
+            size_hint_y: 0.3
+            
+        Image:
+            source: 'https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/svgs/solid/pray.svg'
+            size_hint_y: 0.3
+            
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 20
+            size_hint_y: 0.4
+            
+            Button:
+                text: 'Devotee Page'
+                font_size: '20sp'
+                on_release: root.go_to_devotee_page()
+                background_color: 0.2, 0.6, 1, 1
+                
+            Button:
+                text: 'Admin Dashboard'
+                font_size: '20sp'
+                on_release: root.go_to_admin_login()
+                background_color: 0.8, 0.2, 0.2, 1
+
+<AdminLoginScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 20
+        
+        Label:
+            text: 'Admin Login'
+            font_size: '24sp'
+            size_hint_y: 0.2
+            
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            size_hint_y: 0.6
+            
+            Label:
+                text: 'Username'
+                halign: 'left'
+                text_size: self.size
+                
+            TextInput:
+                id: username_input
+                multiline: False
+                size_hint_y: None
+                height: '40dp'
+                
+            Label:
+                text: 'Password'
+                halign: 'left'
+                text_size: self.size
+                
+            TextInput:
+                id: password_input
+                multiline: False
+                password: True
+                size_hint_y: None
+                height: '40dp'
+                
+            Label:
+                id: error_label
+                text: ''
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: '30dp'
+                
+            Button:
+                text: 'Login'
+                size_hint_y: None
+                height: '50dp'
+                on_release: root.login()
+                background_color: 0.2, 0.6, 1, 1
+                
+        Button:
+            text: 'Back'
+            size_hint_y: 0.1
+            on_release: root.go_back()
+            background_color: 0.8, 0.8, 0.8, 1
+
+<DevoteeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        
+        BoxLayout:
+            size_hint_y: 0.1
+            
+            Button:
+                text: '≡'
+                size_hint_x: 0.2
+                on_release: root.show_menu()
+                
+            Label:
+                text: 'Devotee Page'
+                font_size: '20sp'
+                
+            Button:
+                text: 'Home'
+                size_hint_x: 0.3
+                on_release: root.go_home()
+        
+        Label:
+            id: printer_status
+            text: 'Printer: Not Connected'
+            size_hint_y: 0.05
+            color: 1, 0, 0, 1
+            
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.15
+            
+            Label:
+                text: 'Enter Devotee ID:'
+                
+            TextInput:
+                id: devotee_id_input
+                multiline: False
+                readonly: True
+                font_size: '22sp'
+                halign: 'center'
+        
+        GridLayout:
+            cols: 3
+            spacing: 10
+            size_hint_y: 0.4
+            
+            Button:
+                text: '1'
+                font_size: '24sp'
+                on_release: root.add_number('1')
+                
+            Button:
+                text: '2'
+                font_size: '24sp'
+                on_release: root.add_number('2')
+                
+            Button:
+                text: '3'
+                font_size: '24sp'
+                on_release: root.add_number('3')
+                
+            Button:
+                text: '4'
+                font_size: '24sp'
+                on_release: root.add_number('4')
+                
+            Button:
+                text: '5'
+                font_size: '24sp'
+                on_release: root.add_number('5')
+                
+            Button:
+                text: '6'
+                font_size: '24sp'
+                on_release: root.add_number('6')
+                
+            Button:
+                text: '7'
+                font_size: '24sp'
+                on_release: root.add_number('7')
+                
+            Button:
+                text: '8'
+                font_size: '24sp'
+                on_release: root.add_number('8')
+                
+            Button:
+                text: '9'
+                font_size: '24sp'
+                on_release: root.add_number('9')
+                
+            Button:
+                text: 'Clear'
+                font_size: '20sp'
+                on_release: root.clear_input()
+                background_color: 1, 0.5, 0.5, 1
+                
+            Button:
+                text: '0'
+                font_size: '24sp'
+                on_release: root.add_number('0')
+                
+            Button:
+                text: 'Del'
+                font_size: '20sp'
+                on_release: root.delete_last()
+                background_color: 1, 0.5, 0.5, 1
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.2
+            
+            Button:
+                text: 'Submit & Print'
+                font_size: '22sp'
+                background_color: 0.2, 0.7, 0.3, 1
+                on_release: root.submit_and_print()
+                
+            Label:
+                id: selected_item_label
+                text: ''
+                font_size: '20sp'
+                color: 0.2, 0.6, 1, 1
+        
+        Label:
+            id: error_label
+            text: ''
+            color: 1, 0, 0, 1
+            size_hint_y: 0.1
+
+<BluetoothPopup>:
+    title: 'Connect to Printer'
+    size_hint: 0.8, 0.8
+    auto_dismiss: False
+    
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 10
+        spacing: 10
+        
+        Label:
+            text: 'Available Devices:'
+            size_hint_y: 0.1
+            
+        ScrollView:
+            size_hint_y: 0.7
+            
+            BoxLayout:
+                id: devices_list
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: 5
+        
+        Button:
+            text: 'Scan for Devices'
+            size_hint_y: 0.1
+            on_release: root.scan_devices()
+            
+        Button:
+            text: 'Close'
+            size_hint_y: 0.1
+            on_release: root.dismiss()
+
+<AdminDashboardScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 15
+        
+        BoxLayout:
+            size_hint_y: 0.1
+            
+            Label:
+                text: 'Admin Dashboard'
+                font_size: '22sp'
+                
+            Button:
+                text: 'Logout'
+                size_hint_x: 0.3
+                on_release: root.logout()
+        
+        GridLayout:
+            cols: 2
+            spacing: 15
+            size_hint_y: 0.8
+            
+            Button:
+                text: 'Reports'
+                font_size: '18sp'
+                on_release: root.open_reports()
+                background_color: 0.2, 0.6, 1, 1
+                
+            Button:
+                text: 'Calendar View'
+                font_size: '18sp'
+                on_release: root.open_calendar()
+                background_color: 0.2, 0.6, 1, 1
+                
+            Button:
+                text: 'Add Devotee'
+                font_size: '18sp'
+                on_release: root.add_devotee()
+                background_color: 0.2, 0.6, 1, 1
+                
+            Button:
+                text: 'Devotee List'
+                font_size: '18sp'
+                on_release: root.view_devotees()
+                background_color: 0.2, 0.6, 1, 1
+                
+            Button:
+                text: 'Backup Data'
+                font_size: '18sp'
+                on_release: root.backup_data()
+                background_color: 0.5, 0.5, 0.5, 1
+                
+            Button:
+                text: 'Settings'
+                font_size: '18sp'
+                on_release: root.open_settings()
+                background_color: 0.5, 0.5, 0.5, 1
+                
+        Button:
+            text: 'Back to Devotee Page'
+            size_hint_y: 0.1
+            on_release: root.go_back()
+            background_color: 0.8, 0.8, 0.8, 1
+
+<AddDevoteeScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        
+        BoxLayout:
+            size_hint_y: 0.1
+            
+            Label:
+                text: 'Add New Devotee'
+                font_size: '20sp'
+                
+            Button:
+                text: 'Back'
+                size_hint_x: 0.3
+                on_release: root.go_back()
+        
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 10
+            size_hint_y: 0.8
+            
+            Label:
+                text: 'Devotee ID:'
+                halign: 'left'
+                text_size: self.size
+                
+            TextInput:
+                id: devotee_id_input
+                multiline: False
+                size_hint_y: None
+                height: '40dp'
+                
+            Label:
+                text: 'Name:'
+                halign: 'left'
+                text_size: self.size
+                
+            TextInput:
+                id: name_input
+                multiline: False
+                size_hint_y: None
+                height: '40dp'
+                
+            Label:
+                text: 'Phone Number:'
+                halign: 'left'
+                text_size: self.size
+                
+            TextInput:
+                id: phone_input
+                multiline: False
+                input_filter: 'int'
+                size_hint_y: None
+                height: '40dp'
+                
+            Label:
+                text: 'Email (Optional):'
+                halign: 'left'
+                text_size: self.size
+                
+            TextInput:
+                id: email_input
+                multiline: False
+                size_hint_y: None
+                height: '40dp'
+                
+            Label:
+                text: 'Address (Optional):'
+                halign: 'left'
+                text_size: self.size
+                
+            TextInput:
+                id: address_input
+                multiline: True
+                size_hint_y: None
+                height: '80dp'
+                
+            Label:
+                id: error_label
+                text: ''
+                color: 1, 0, 0, 1
+                size_hint_y: None
+                height: '30dp'
+                
+            Button:
+                text: 'Save Devotee'
+                size_hint_y: None
+                height: '50dp'
+                on_release: root.save_devotee()
+                background_color: 0.2, 0.7, 0.3, 1
+
+<ReportsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        
+        BoxLayout:
+            size_hint_y: 0.1
+            
+            Label:
+                text: 'Reports'
+                font_size: '20sp'
+                
+            Button:
+                text: 'Back'
+                size_hint_x: 0.3
+                on_release: root.go_back()
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.1
+            spacing: 10
+            
+            Spinner:
+                id: report_type
+                text: 'Select Report Type'
+                values: ['Daily', 'Monthly', 'Yearly', 'Devotee-wise']
+                on_text: root.change_report_type(self.text)
+            
+            Spinner:
+                id: filter_spinner
+                text: 'Select Filter'
+                values: []
+                on_text: root.apply_filter(self.text)
+        
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint_y: 0.7
+            
+            Label:
+                id: report_title
+                text: 'Report Data'
+                size_hint_y: 0.1
+                
+            ScrollView:
+                size_hint_y: 0.9
+                
+                GridLayout:
+                    id: report_data
+                    cols: 1
+                    size_hint_y: None
+                    height: self.minimum_height
+                    spacing: 5
+        
+        Button:
+            text: 'Export Report'
+            size_hint_y: 0.1
+            on_release: root.export_report()
+            background_color: 0.2, 0.6, 1, 1
+
+<CalendarViewScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        padding: 20
+        spacing: 10
+        
+        BoxLayout:
+            size_hint_y: 0.1
+            
+            Label:
+                text: 'Attendance Calendar'
+                font_size: '20sp'
+                
+            Button:
+                text: 'Back'
+                size_hint_x: 0.3
+                on_release: root.go_back()
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.1
+            spacing: 10
+            
+            Spinner:
+                id: devotee_spinner
+                text: 'Select Devotee'
+                values: []
+                on_text: root.select_devotee(self.text)
+            
+            Spinner:
+                id: month_spinner
+                text: 'Select Month'
+                values: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+                on_text: root.update_calendar()
+            
+            Spinner:
+                id: year_spinner
+                text: '2023'
+                values: ['2022', '2023', '2024', '2025']
+                on_text: root.update_calendar()
+        
+        GridLayout:
+            id: calendar_header
+            cols: 7
+            size_hint_y: 0.05
+            
+            Label:
+                text: 'Sun'
+            Label:
+                text: 'Mon'
+            Label:
+                text: 'Tue'
+            Label:
+                text: 'Wed'
+            Label:
+                text: 'Thu'
+            Label:
+                text: 'Fri'
+            Label:
+                text: 'Sat'
+        
+        GridLayout:
+            id: calendar_grid
+            cols: 7
+            size_hint_y: 0.65
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.1
+            spacing: 10
+            
+            BoxLayout:
+                orientation: 'horizontal'
+                
+                Label:
+                    canvas.before:
+                        Color:
+                            rgba: 0.2, 0.8, 0.2, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: 20, 20
+                    text: ''
+                    size_hint_x: None
+                    width: 30
+                
+                Label:
+                    text: 'Present'
+            
+            BoxLayout:
+                orientation: 'horizontal'
+                
+                Label:
+                    canvas.before:
+                        Color:
+                            rgba: 0.8, 0.2, 0.2, 1
+                        Rectangle:
+                            pos: self.pos
+                            size: 20, 20
+                    text: ''
+                    size_hint_x: None
+                    width: 30
+                
+                Label:
+                    text: 'Absent'
