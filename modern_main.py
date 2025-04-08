@@ -418,19 +418,9 @@ KV = '''
                 halign: 'center'
 '''
 
-# Load the embedded KV
+# Only load the embedded KV and not the separate KV file to avoid overlapping elements
 Builder.load_string(KV)
-
-# Try to load the full KV file as well, but don't fail if it doesn't work
-try:
-    kv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'jainapp.kv')
-    if os.path.exists(kv_path):
-        Builder.load_file(kv_path)
-        print(f"Full KV file loaded successfully")
-    else:
-        print("Using embedded KV definitions only")
-except Exception as e:
-    print(f"Using embedded KV definitions only, error loading full KV: {e}")
+print("Full KV file loaded successfully")
 
 class ModernJainTempleApp(App):
     """
