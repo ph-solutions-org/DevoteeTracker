@@ -1,0 +1,45 @@
+Traceback (most recent call last):
+   File "kivy\\properties.pyx", line 961, in kivy.properties.ObservableDict.__getattr__
+ KeyError: 'devices_list'
+
+ During handling of the above exception, another exception occurred:   
+
+ Traceback (most recent call last):
+   File "E:\REPLIT APP\DevoteeTracker\modern_main.py", line 471, in <module>
+     ModernJainTempleApp().run()
+   File "C:\Users\DELL\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\kivy\app.py", line 956, in run
+     runTouchApp()
+   File "C:\Users\DELL\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\kivy\base.py", line 574, in runTouchApp
+     EventLoop.mainloop()
+   File "C:\Users\DELL\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\kivy\base.py", line 339, in mainloop
+     self.idle()
+   File "C:\Users\DELL\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\kivy\base.py", line 379, in idle
+     Clock.tick()
+   File "C:\Users\DELL\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\kivy\clock.py", line 733, in tick
+     self.post_idle(ts, self.idle())
+   File "C:\Users\DELL\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\kivy\clock.py", line 776, in post_idle
+     self._process_events()
+   File "kivy\\_clock.pyx", line 620, in kivy._clock.CyClockBase._process_events
+   File "kivy\\_clock.pyx", line 653, in kivy._clock.CyClockBase._process_events
+   File "kivy\\_clock.pyx", line 649, in kivy._clock.CyClockBase._process_events
+   File "kivy\\_clock.pyx", line 218, in kivy._clock.ClockEvent.tick   
+   File "C:\Users\DELL\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\kivy\animation.py", line 370, in _update
+     self.stop(widget)
+   File "C:\Users\DELL\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\kivy\animation.py", line 236, in stop
+     self.dispatch('on_complete', widget)
+   File "kivy\\_event.pyx", line 727, in kivy._event.EventDispatcher.dispatch
+   File "kivy\\_event.pyx", line 1307, in kivy._event.EventObservers.dispatch
+   File "kivy\\_event.pyx", line 1231, in kivy._event.EventObservers._dispatch
+   File "C:\Users\DELL\AppData\Local\Packages\PythonSoftwareFoundation.Python.3.11_qbz5n2kfra8p0\LocalCache\local-packages\Python311\site-packages\kivy\uix\modalview.py", line 221, in <lambda>
+     ani.bind(on_complete=lambda *_args: self.dispatch('on_open'))     
+                                         ^^^^^^^^^^^^^^^^^^^^^^^^      
+   File "kivy\\_event.pyx", line 731, in kivy._event.EventDispatcher.dispatch
+   File "E:\REPLIT APP\DevoteeTracker\screens\devotee_screen.py", line 
+22, in on_open
+     self.scan_devices()
+   File "E:\REPLIT APP\DevoteeTracker\screens\devotee_screen.py", line 
+27, in scan_devices
+     self.ids.devices_list.clear_widgets()
+     ^^^^^^^^^^^^^^^^^^^^^
+   File "kivy\\properties.pyx", line 964, in kivy.properties.ObservableDict.__getattr__
+ AttributeError: 'super' object has no attribute '__getattr__'. Did you mean: '__setattr__'?
