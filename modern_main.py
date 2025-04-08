@@ -416,6 +416,40 @@ KV = '''
                 size_hint_y: None
                 height: dp(30)
                 halign: 'center'
+
+<BluetoothPopup>:
+    title: 'Connect to Printer'
+    size_hint: 0.8, 0.8
+    auto_dismiss: False
+    
+    BoxLayout:
+        orientation: 'vertical'
+        padding: dp(10)
+        spacing: dp(10)
+        
+        Label:
+            text: 'Available Devices:'
+            size_hint_y: 0.1
+            
+        ScrollView:
+            size_hint_y: 0.7
+            
+            BoxLayout:
+                id: devices_list
+                orientation: 'vertical'
+                size_hint_y: None
+                height: self.minimum_height
+                spacing: dp(5)
+        
+        Button:
+            text: 'Scan for Devices'
+            size_hint_y: 0.1
+            on_release: root.scan_devices()
+            
+        Button:
+            text: 'Close'
+            size_hint_y: 0.1
+            on_release: root.dismiss()
 '''
 
 # Only load the embedded KV and not the separate KV file to avoid overlapping elements
