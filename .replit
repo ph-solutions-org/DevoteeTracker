@@ -35,6 +35,14 @@ args = "EmbeddedApp"
 task = "workflow.run"
 args = "DesktopJainApp"
 
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "TestKivyMDApp"
+
+[[workflows.workflow.tasks]]
+task = "workflow.run"
+args = "ModernJainApp"
+
 [[workflows.workflow]]
 name = "JainTempleApp"
 author = "agent"
@@ -118,6 +126,34 @@ task = "packager.installForAll"
 [[workflows.workflow.tasks]]
 task = "shell.exec"
 args = "python desktop_main.py"
+
+[[workflows.workflow]]
+name = "TestKivyMDApp"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python test_kivymd.py"
+
+[[workflows.workflow]]
+name = "ModernJainApp"
+author = "agent"
+
+[workflows.workflow.metadata]
+agentRequireRestartOnSave = false
+
+[[workflows.workflow.tasks]]
+task = "packager.installForAll"
+
+[[workflows.workflow.tasks]]
+task = "shell.exec"
+args = "python modern_main.py"
 
 [deployment]
 run = ["sh", "-c", "pip install kivy && python main.py"]
